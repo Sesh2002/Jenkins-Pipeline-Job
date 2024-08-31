@@ -54,7 +54,7 @@ pipeline {
     post {
         always {
             emailext(
-                to: 'developer@example.com',
+                to: 'seshinimanushika20021114@gmail.com', // Updated email address
                 subject: "Pipeline ${currentBuild.fullDisplayName}",
                 body: """Pipeline ${currentBuild.fullDisplayName} finished with status ${currentBuild.currentResult}.
                          Check the Jenkins console output for details.""",
