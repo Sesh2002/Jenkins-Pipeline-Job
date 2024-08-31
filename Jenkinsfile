@@ -53,10 +53,14 @@ pipeline {
     }
     post {
         always {
-            mail to: 'developer@example.com',
-                 subject: "Pipeline ${currentBuild.fullDisplayName}",
-                 body: "Pipeline ${currentBuild.fullDisplayName} finished with status ${currentBuild.currentResult}.",
-                 attachLog: true
+            emailext(
+                to: 'developer@example.com',
+                subject: "Pipeline ${currentBuild.fullDisplayName}",
+                body: """Pipeline ${currentBuild.fullDisplayName} finished with status ${currentBuild.currentResult}.
+                         Check the Jenkins console output for details.""",
+                mimeType: 'text/html',
+                attachLog: true // This will attach the console log to the email
+            )
         }
     }
 }
